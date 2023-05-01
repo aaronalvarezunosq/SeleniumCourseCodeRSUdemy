@@ -1,0 +1,9 @@
+package First_Package;
+
+public class DropDownPracticeSection7 {
+
+	public static void main(String[] args) {
+		//https://rahulshettyacademy.com/dropdownsPractise/
+	}
+
+}

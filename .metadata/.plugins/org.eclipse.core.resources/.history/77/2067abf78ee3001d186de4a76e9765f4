@@ -1,0 +1,12 @@
+package First_Package;
+
+import org.openqa.selenium.WebDriver;
+
+public class Section67_AlertPractice {
+
+	public static void main(String[] args) {
+		
+		WebDriver driver = new ChromeDriver();
+	}
+
+}
