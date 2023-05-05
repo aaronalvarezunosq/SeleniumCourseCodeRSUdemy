@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;coloumndriver&apos; in &apos;Section11.Lesson96_ScopeDriverLesson.main(...)&apos; to &apos;columndriver&apos;&#x0D;&#x0A;- Original project: &apos;FirstPractice&apos;&#x0D;&#x0A;- Original element: &apos;Section11.Lesson96_ScopeDriverLesson.main(String[]).coloumndriver&apos;&#x0D;&#x0A;- Renamed element: &apos;coloumndriver&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;coloumndriver&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src\/test\/java=/optional=/true=/=/maven.pomderived=/true=/=/test=/true=/&lt;Section11{Lesson96_ScopeDriverLesson.java[Lesson96_ScopeDriverLesson~main~\[QString;@coloumndriver!855!943!866!878!QWebElement;!0!false" name="columndriver" references="true" stamp="1683324154047" version="1.0"/>
+</session>

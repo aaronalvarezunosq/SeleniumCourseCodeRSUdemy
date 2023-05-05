@@ -1,0 +1,113 @@
+package Section8;
+
+import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
+
+public class Assignment_Section81 {
+
+	public static void main(String[] args) throws InterruptedException {
+		WebDriver driver = new ChromeDriver();
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+		String[] itemsNeeded = { "iphone X", "Samsung Note 8", "Nokia Edge", "Blackberry" };
+
+		
+		
+		driver.manage().window().maximize();
+		driver.get("https://rahulshettyacademy.com/loginpagePractise/"); //navigate to page
+		WebElement usernameField = driver.findElement(By.id("username"));
+		WebElement passwordField = driver.findElement(By.id("password"));
+		WebElement userRadioButton = driver.findElement(By.xpath("//label[@class='customradio'][2]/span[@class='checkmark']"));
+		WebElement selectUsertype = driver.findElement(By.xpath("//select[@class='form-control']"));
+		WebElement termsCheckbox = driver.findElement(By.id("terms"));
+		WebElement signinButton = driver.findElement(By.id("signInBtn"));
+		
+		Select userDropdown = new Select(selectUsertype);
+		
+		Thread.sleep(1000);
+		usernameField.sendKeys("rahulshettyacademy");//send username
+		Thread.sleep(500);
+		passwordField.sendKeys("learning");//send password
+		Thread.sleep(500);
+		userRadioButton.click();//click on radiobutton
+		Thread.sleep(1500);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("okayBtn")));
+		driver.findElement(By.id("okayBtn")).click();
+		Thread.sleep(500);
+		userDropdown.selectByVisibleText("Consultant"); //select consultant in dropdown list
+		Thread.sleep(500);
+		termsCheckbox.click();//accept terms
+		Thread.sleep(500);
+		signinButton.click();//click on login
+		Thread.sleep(3000);
+		//End of loginpage
+		
+		//Start of items page
+		
+		
+		//end of items page
+		driver.quit();
+	}
+
+	public static void addItemsboo(WebDriver driver, String[] itemsNeeded){
+		int j = 0;
+		List<WebElement> products = driver.findElements(By.xpath("//app-card[@class='col-lg-3 col-md-6 mb-3']/div[@class='card h-100']/div[@class='card-body']/h4/a"));
+		for (int i = 0; i < products.size(); i++)
+		{
+			int index = 0;
+			if (products.get(i).getText().contains(itemsNeeded[index]))
+			{ 
+				j++;
+				// click on Add to cart
+				driver.findElements(By.xpath("//div[@class='card-footer']/button")).get(i).click();//changed locator to not depend on visible text as visible text changes when element is clicked
+				System.out.println("Item "+formattedName+" has been added to cart"); //print the item that was added to cart in the console
+				if (j == itemsNeeded.length)
+				{
+					break;
+				}
+			}
+			else {
+				index++;
+			}
+		}
+	}//end of addItems function
+	
+	public static void addItems(WebDriver driver, String[] itemsNeeded){
+		int j = 0;
+		List<WebElement> products = driver.findElements(By.xpath("//app-card[@class='col-lg-3 col-md-6 mb-3']/div[@class='card h-100']/div[@class='card-body']/h4/a"));
+		for (int i = 0; i < products.size(); i++)
+		{
+			String[] name = products.get(i).getText().split("-");
+			String formattedName = name[0].trim(); //Removes space after the vegetable name
+			// format it to get actual vegetable name
+			// convert array into array list for easy search
+			// check whether name you extracted is present in arrayList or not-
+
+			List<String> itemsNeededList = Arrays.asList(itemsNeeded);
+			if (itemsNeededList.contains(formattedName))
+			{
+				j++;
+				// click on Add to cart
+				driver.findElements(By.xpath("//div[@class='product-action']/button")).get(i).click();//changed locator to not depend on visible text as visible text changes when element is clicked
+				System.out.println("Item "+formattedName+" has been added to cart"); //print the item that was added to cart in the console
+				if (j == itemsNeeded.length)
+				{
+					break;
+				}
+			}
+		}
+	}//end of addItems function
+	
+	
+	
+	
+}

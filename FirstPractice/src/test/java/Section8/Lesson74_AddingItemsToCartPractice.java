@@ -1,5 +1,6 @@
 package Section8;
 
+import java.time.Duration;
 import java.util.Arrays;
 
 import java.util.List;
@@ -17,11 +18,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 public class Lesson74_AddingItemsToCartPractice {
 
 	public static void main(String[] args) throws InterruptedException {
 		WebDriver driver = new ChromeDriver();
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+		
 
 		String[] itemsNeeded = { "Cucumber", "Brocolli", "Beetroot" };
 
@@ -30,6 +34,25 @@ public class Lesson74_AddingItemsToCartPractice {
 		Thread.sleep(3000);
 
 		addItems(driver, itemsNeeded);
+		driver.findElement(By.xpath("//img[@alt='Cart']")).click(); //clicks on the cart after adding items
+		
+		driver.findElement(By.xpath("//div[@class='cart-preview active']/div[@class='action-block']/button")).click(); //clicks on proceed to checkout
+		
+		Assert.assertEquals(driver.getCurrentUrl(), "https://rahulshettyacademy.com/seleniumPractise/#/"); //assert that the page url matches the summary page
+		
+		//start of the summary page code
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("promoCode"))); //wait until inputfield loads into page
+		WebElement promoInput = driver.findElement(By.className("promoCode"));
+		WebElement applyButton = driver.findElement(By.className("promoBtn"));
+
+		promoInput.sendKeys("rahulshettyacademy"); //types promocode into the textfield
+		applyButton.click(); //clicks on apply button after typing in the code.
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("promoInfo")));
+		String promoMessage = driver.findElement(By.className("promoInfo")).getText();
+		System.out.println("The retrieved promo code is: " + promoMessage);
+		
+		Thread.sleep(2000);
+		driver.quit();
 
 	}
 
@@ -59,5 +82,5 @@ public class Lesson74_AddingItemsToCartPractice {
 				}
 			}
 		}
-	}
+	}//end of addItems function
 }
