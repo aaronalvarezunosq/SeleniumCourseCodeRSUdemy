@@ -1,0 +1,12 @@
+[
+    {
+        "email"         :   "aarontestrsa@rsa.com",
+        "password"      :   "Static123456!",
+        "productToAdd"  :   "zara coat 3"
+    },
+    {
+        "email"         :   "aarontestrsa@rsa.com",
+        "password"      :   "Static123456!",
+        "productToAdd"  :   "ADIDAS ORIGINAL"
+    }
+]
