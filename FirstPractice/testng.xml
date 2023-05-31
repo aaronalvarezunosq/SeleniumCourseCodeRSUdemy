@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="PracticeTestNGSuite">
+	<parameter name="UsernameTest" value="UserFromXMLFILE"></parameter>
+	<parameter name="URL" value="This is a test URLParameter"></parameter>
+	<parameter name="testKey" value="qwertyTestKey"></parameter>
+	<listeners>
+		<listener class-name="test.Listeners"></listener>
+	</listeners>
+  <test thread-count="5" name="DaysClasses">
+    <classes>
+      <class name="test.day3"/>
+      <class name="test.day2"/>
+      <class name="test.day4"/>
+      <class name="test.day1"/>
+    </classes>
+  </test> <!-- DaysClasses -->
+</suite> <!-- PracticeTestNGSuite -->

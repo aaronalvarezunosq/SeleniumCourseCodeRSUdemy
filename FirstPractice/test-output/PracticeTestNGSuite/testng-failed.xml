@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [PracticeTestNGSuite]" guice-stage="DEVELOPMENT">
+  <parameter name="UsernameTest" value="UserFromXMLFILE"/>
+  <parameter name="testKey" value="qwertyTestKey"/>
+  <parameter name="URL" value="This is a test URLParameter"/>
+  <listeners>
+    <listener class-name="test.Listeners"/>
+  </listeners>
+  <test thread-count="5" name="DaysClasses(failed)">
+    <classes>
+      <class name="test.day1">
+        <methods>
+          <include name="afSyite"/>
+          <include name="lastexecution"/>
+          <include name="Demo"/>
+        </methods>
+      </class> <!-- test.day1 -->
+    </classes>
+  </test> <!-- DaysClasses(failed) -->
+</suite> <!-- Failed suite [PracticeTestNGSuite] -->

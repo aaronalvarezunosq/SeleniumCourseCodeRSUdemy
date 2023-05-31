@@ -1,20 +1,15 @@
 package EndToEndFrameworkRSA.PracticeFramework;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import EndToEndFrameworkRSA.testComponents.BaseTest;
-
-
+import EndToEndFrameworkRSA.testComponents.Retry;
 import rahulShettyAcademy.pageObjects.CartCheckOutPage;
 
 import rahulShettyAcademy.pageObjects.OrderCheckOutPage;
@@ -27,7 +22,7 @@ import rahulShettyAcademy.pageObjects.ProductCatalog;
 
 public class standAloneTestPageObject extends BaseTest{
 	String productToAdd = "zara coat 3";	
-	@Test(groups= {"PlaceOrderFlow"},dataProvider="getData")
+	@Test(groups= {"PlaceOrderFlow"},dataProvider="getData",retryAnalyzer=Retry.class) //included retryAnalizer to keep notation
 	 public void getOrderNumbers(HashMap<String,String> input) throws InterruptedException, IOException {			
 			// begin login process
 			ProductCatalog productCatalog = landingPage.loginWebsite(input.get("email"), input.get("password"));			
@@ -65,15 +60,6 @@ public class standAloneTestPageObject extends BaseTest{
 		System.out.println("Assertion in Order History Passed, Item was found in orders list");
 	}
 	
-	
-	public String getScreenshot(String testCaseName) throws IOException {
-		
-		TakesScreenshot ts = (TakesScreenshot)driver;
-		File source = ts.getScreenshotAs(OutputType.FILE);
-		File destinationFile = new File(System.getProperty("user.dir")+"//screenshotReports"+testCaseName+".png");
-		FileUtils.copyFile(source,destinationFile);
-		return System.getProperty("user.dir")+"//screenshotReports"+testCaseName+".png";
-	}
 
 	@DataProvider //with hashmap implementation
 	public Object[][] getData() throws IOException{
